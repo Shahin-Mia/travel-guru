@@ -1,7 +1,47 @@
-body{
+*{
+    box-sizing: border-box;
+}
+.banner{
     background:linear-gradient(45deg,rgba(0, 0, 0, 0.7), rgba(17, 16, 16, 0.7)), url('../../image/Rectangle\ 1.png');
     background-repeat: no-repeat, no-repeat;
     background-size: contain, cover;
     width: 100%;
     height: 900px;
+    color: #fff;
+}
+.card-slider{
+    max-width: 226px;
+    margin: auto 0;
+}
+.card-wrapper{
+    display: flex;
+    transition: transform .3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.booking-btn{
+    border:none;
+    background: #F9A51A;
+    border-radius: 5px;
+    width:161px;
+    height: 48px;
+    padding: 12px 29px;
+    color:#0a0a0a;
+    transition: background .1s ease-in;
+    text-align: center;
+    
+}
+.booking-btn:hover{
+    text-decoration: none;
+    background: #ca871a;
+    color:white;
+}
+.custom-btn{
+    width: 47px;
+    height: 47px;
+    border: none;
+    border-radius: 50%;
+    margin: 10px;
+    font-size: 20px;
+}
+.custom-btn:focus{
+    outline:none;
 }

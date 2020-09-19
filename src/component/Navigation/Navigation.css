@@ -1,0 +1,19 @@
+*{
+    font-weight: 600;
+}
+.search-btn,.searchBox{
+    border:none;
+    background: none;
+    background: 'none';
+}
+.search-btn:focus, .searchBox:focus{
+    outline:none;
+}
+.search-btn{
+    width: 50px;
+    height: 42px;
+    color:white;
+}
+.searchBox::placeholder{
+    color: white;
+}

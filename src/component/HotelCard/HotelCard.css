@@ -1,0 +1,19 @@
+.card{
+    border:none;
+}
+
+.card-text{
+    font-weight: 400;
+    font-size: 14px;
+    color:#c7c7c7;
+}
+.star-pic{
+    height: 14px;
+}
+.pricing-tag{
+    color:#0a0a0a;
+    margin-left: 20px;
+}
+.card-title a{
+    text-decoration: none;
+}

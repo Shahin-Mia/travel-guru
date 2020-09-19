@@ -1,0 +1,13 @@
+.custom-card{
+    flex: 1;
+    width: 19rem;
+    margin: 18px;
+    color : #fff;
+    position: relative;
+    transition: border .3s linear;
+}
+.custom-card:hover{
+    border:3px solid #F9A51A;
+    color:white;
+    border-radius: 21px;
+}
