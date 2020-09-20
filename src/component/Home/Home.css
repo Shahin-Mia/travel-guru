@@ -13,6 +13,16 @@
     max-width: 226px;
     margin: auto 0;
 }
+.card-slider::after{
+    content: "";
+    position: absolute;
+    left: 32px;
+    bottom: 16px;
+    border: 2px solid #f9a51a;
+    width: 290px;
+    height: 447px;
+    border-radius: 21px;
+}
 .card-wrapper{
     display: flex;
     transition: transform .3s cubic-bezier(0.455, 0.03, 0.515, 0.955);

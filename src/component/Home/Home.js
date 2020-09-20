@@ -30,18 +30,19 @@ const Home = () => {
         <div className="banner">
             <Navigation></Navigation>
             <Container fluid style={{ marginTop: 100 }}>
-                <Row className="justify-content-center" style={{ marginLeft: 60, paddingLeft: 60 }}>
+                <Row className="justify-content-center">
+                    <Col md={1}></Col>
                     <Col md={4}>
-                        <h1 style={{ fontSize: 80, fontFamily: 'Bebas Neue' }}>
+                        <h1 style={{ fontSize: 80 }}>
                             {property.placeName}
                         </h1>
                         <p>{property.description}</p>
                         <a href={`/booking/${property.id}`} className="booking-btn">Booking <FontAwesomeIcon icon={faArrowRight} /></a>
                     </Col>
-                    <Col md={8} className="overflow-hidden">
+                    <Col md={7} className="overflow-hidden">
                         <div className={`card-slider active-card-${property.index}`}>
                             <div className="card-wrapper" style={{
-                                transform: `translateX(-${property.index * (180 / places.length)}%)`
+                                transform: `translateX(-${property.index * (431 / places.length)}%)`
                             }}>
                                 {
                                     places.map(card => <Places key={card.id} property={card}></Places>)

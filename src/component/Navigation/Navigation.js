@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Button, Container, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
+import { Container, Form, Nav, Navbar } from 'react-bootstrap';
 import logo from '../../image/Group1330.png';
 import blackLogo from '../../image/Logo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './Navigation.css'
 import { Link, useLocation } from 'react-router-dom';
 import { UserContext } from '../../App';
+import { handleSignOut } from '../Login/firebaseMethods';
 
 const Navigation = () => {
     const location = useLocation();
@@ -20,6 +21,11 @@ const Navigation = () => {
         if (!changingNav) {
             setChangingNav(true)
         }
+    }
+
+    const userSignOut = () => {
+        handleSignOut()
+            .then(res => setLoggedInUser(res));
     }
 
 
@@ -69,8 +75,9 @@ const Navigation = () => {
                         <Nav.Link href="#contact" className={changingNav ? "text-dark ml-3" : "text-white ml-3"}>
                             Contact
                         </Nav.Link>
-                        {loggedInUser && <Nav.Link>{loggedInUser.name}</Nav.Link>}
-                        {!loggedInUser.email && < Nav.Link href="/login" style={loginBtnStyle} className='text-dark ml-3'>Login</Nav.Link>}
+                        {loggedInUser.email && <Nav.Link>{loggedInUser.name}</Nav.Link>}
+                        {!loggedInUser.email ? < Nav.Link href="/login" style={loginBtnStyle} className='text-dark ml-3'>Login</Nav.Link>
+                            : <button style={{ border: 'none' }} onClick={userSignOut}>Sign out</button>}
 
                     </Nav>
                 </Navbar.Collapse>
