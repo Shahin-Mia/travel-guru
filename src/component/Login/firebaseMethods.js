@@ -18,9 +18,11 @@ export const handleGoogleSignIn = () => {
 
     }).catch(function (error) {
         // Handle Errors here.
-        const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage)
+        // The email of the user's account used.
+        const newInfo = {};
+        newInfo.error = errorMessage;
+        return newInfo
     });
 }
 
@@ -35,26 +37,32 @@ export const handleFacebookSignIn = () => {
 
     }).catch(function (error) {
         // Handle Errors here.
-        const errorCode = error.code;
         const errorMessage = error.message;
         // The email of the user's account used.
-        console.log(errorMessage)
+        const newInfo = {};
+        newInfo.error = errorMessage;
+        return newInfo
     });
 }
 
 export const createUserWithEmailAndPassword = (name, email, password) => {
     return firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(res => {
-            updateProfileName(name);
             const newInfo = res.user;
             newInfo.error = "";
-            return newInfo;
+            const { email, error } = newInfo
+            const signedInUser = {
+                name: name,
+                email,
+                error
+            }
+            updateProfileName(name);
+            return signedInUser;
 
 
         })
         .catch(function (error) {
             // Handle Errors here.
-            const errorCode = error.code;
             const errorMessage = error.message;
             const newInfo = {};
             newInfo.error = errorMessage;
@@ -72,8 +80,7 @@ export const signInWithEmailAndPassword = (email, password) => {
             return signedInUser;
         })
         .catch(function (error) {
-            // Handle Errors here.
-            const errorCode = error.code;
+            // Handle Errors here
             const errorMessage = error.message;
             const newInfo = {};
             newInfo.error = errorMessage;

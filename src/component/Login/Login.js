@@ -68,20 +68,19 @@ const Login = () => {
 
         }
     }
+    console.log(userInfo)
 
     const handleSubmit = (e) => {
         if (newUser && userInfo.email && userInfo.password && userInfo.name) {
             createUserWithEmailAndPassword(userInfo.name, userInfo.email, userInfo.password)
                 .then(res => {
-                    setLoggedInUser(res);
-                    history.replace(from);
+                    responseHandler(res)
                 })
         }
         if (!newUser && userInfo.email && userInfo.password) {
             signInWithEmailAndPassword(userInfo.email, userInfo.password)
                 .then(res => {
-                    setLoggedInUser(res);
-                    history.replace(from);
+                    responseHandler(res)
                 })
         }
         e.preventDefault();
@@ -104,18 +103,26 @@ const Login = () => {
     const googleSignIn = () => {
         handleGoogleSignIn()
             .then(res => {
-                setLoggedInUser(res);
-                history.replace(from);
+                responseHandler(res)
             })
+
     }
 
 
     const fbSignIn = () => {
         handleFacebookSignIn()
             .then(res => {
-                setLoggedInUser(res);
-                history.replace(from);
+                responseHandler(res)
             })
+    }
+
+    if (loggedInUser.email) {
+        history.replace(from);
+    }
+
+    const responseHandler = (res) => {
+        setLoggedInUser(res);
+        setUserInfo(res);
     }
 
     return (
@@ -156,7 +163,7 @@ const Login = () => {
                     </Form.Group>}
                     <button type="submit" disabled={userInfo.confirmationError} className="submit-btn">{newUser ? "Sign Up" : "Login"}</button>
                 </Form>
-                <p className="text-center mt-3 text-danger">{loggedInUser.error}</p>
+                <p className="text-center mt-3 text-danger">{userInfo.error}</p>
                 {newUser ? <p className="text-center mt-3">Already have an Account? <button className="toggle-btn" onClick={() => setNewUser(!newUser)}>Login</button></p>
                     : <p className="text-center mt-3">Don't have an Account? <button className="toggle-btn" onClick={() => setNewUser(!newUser)}>Create an Account</button></p>}
             </div>
