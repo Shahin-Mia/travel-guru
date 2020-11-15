@@ -68,7 +68,6 @@ const Login = () => {
 
         }
     }
-    console.log(userInfo)
 
     const handleSubmit = (e) => {
         if (newUser && userInfo.email && userInfo.password && userInfo.name) {
@@ -116,7 +115,7 @@ const Login = () => {
             })
     }
 
-    if (loggedInUser.email) {
+    if (loggedInUser.email || loggedInUser.name) {
         history.replace(from);
     }
 

@@ -29,20 +29,21 @@ export const handleGoogleSignIn = () => {
 export const handleFacebookSignIn = () => {
     const provider = new firebase.auth.FacebookAuthProvider();
 
-    return firebase.auth().signInWithPopup(provider).then(function (result) {
-        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-        const { displayName, email } = result.user;
-        const signedInUser = { name: displayName, email };
-        return signedInUser;
+    return firebase.auth().signInWithPopup(provider)
+        .then(result => {
+            // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+            const { displayName, email } = result.user;
+            const signedInUser = { name: displayName, email };
+            return signedInUser;
 
-    }).catch(function (error) {
-        // Handle Errors here.
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const newInfo = {};
-        newInfo.error = errorMessage;
-        return newInfo
-    });
+        }).catch(function (error) {
+            // Handle Errors here.
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const newInfo = {};
+            newInfo.error = errorMessage;
+            return newInfo
+        });
 }
 
 export const createUserWithEmailAndPassword = (name, email, password) => {
